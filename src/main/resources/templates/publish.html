@@ -5,10 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/community.css">
     <script src="js/bootstrap.min.js"></script>
 
 </head>
-<body>
+<body class="body">
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -48,6 +49,36 @@
             </ul>
         </div>
     </div>
+
 </nav>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" >
+            <h2>
+                <span class="glyphicon glyphicon-plus" aria-hidden="true">发起</span>
+            </h2>
+            <hr>
+            <form action="/publish" method="post">
+                <div class="form-group">
+                    <label for="title">问题标题</label>
+                    <input th:value="${title}" type="text" class="form-control" name="title" id="title" placeholder="问题标题...">
+                </div>
+                <div class="form-group">
+                    <label for="description">问题描述</label>
+                    <textarea th:value="${description}" class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tag">标签</label>
+                    <input th:value="${tag}" type="text" class="form-control" name="tag" id="tag" placeholder="添加标签，以逗号隔开">
+                </div>
+                <div class="alert alert-danger" th:text="${error}" th:if="${error != null}"></div>
+                <button type="submit" class="btn btn-success btn-publish">发布</button>
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" >
+            <h3>问题发起指南</h3>
+        </div>
+    </div>
+</div>
 </body>
 </html>
