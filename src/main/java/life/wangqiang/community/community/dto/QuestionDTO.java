@@ -1,16 +1,17 @@
-package life.wangqiang.community.community.model;
+package life.wangqiang.community.community.dto;
 
+import life.wangqiang.community.community.model.User;
 import lombok.Data;
 
 /**
  * @version : V1.0
- * @ClassName: Question
+ * @ClassName: QuestionDTO
  * @Description: TODO
  * @Auther: wangqiang
- * @Date: 2019/12/17 下午8:29
+ * @Date: 2019/12/18 上午10:35
  */
 @Data
-public class Question {
+public class QuestionDTO {
     private Integer id;
     private String title;
     private String description;
@@ -21,4 +22,5 @@ public class Question {
     private Integer commentCount;
     private Integer viewCount;
     private Integer likeCount;
+    private User user;
 }
