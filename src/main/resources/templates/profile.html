@@ -12,7 +12,7 @@
 </head>
 <body class="body">
 <div th:insert="~{navigation :: nav}"></div>
-<div class="container-fluid main">
+<div class="container-fluid main profile">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" >
             <h2>
@@ -47,7 +47,14 @@
             </form>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" >
-            <h3>问题发起指南</h3>
+            <div class="list-group section">
+                <a href="/profile/questions"  th:class="${section == 'questions'}? 'active list-group-item':'list-group-item' ">我的问题</a>
+                <a href="/profile/replies"  th:class="${section == 'replies'}? 'active list-group-item':'list-group-item'">最新回复
+                    <span class="badge">14</span>
+                </a>
+
+
+            </div>
         </div>
     </div>
 </div>
