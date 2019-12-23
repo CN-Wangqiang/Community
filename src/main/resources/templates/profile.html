@@ -44,12 +44,12 @@
                 <ul class="pagination">
                     <li th:if="${pagination.showFirstPage}">
                         <a th:href="@{'/profile/' + ${section}(page=${1})}"  aria-label="Previous">
-                            <span aria-hidden="true">&lt;&lt;</span>
+                            <span aria-hidden="true">首页</span>
                         </a>
                     </li>
                     <li th:if="${pagination.showPrevious}">
                         <a th:href="@{'/profile/' + ${section}(page=${pagination.page - 1})}" aria-label="Previous">
-                            <span aria-hidden="true">&lt;</span>
+                            <span aria-hidden="true">上一页</span>
                         </a>
                     </li>
                     <li th:each="page : ${pagination.pages}" th:class="${pagination.page == page}?'active':''">
@@ -57,12 +57,12 @@
 
                     <li th:if="${pagination.showNext}">
                         <a th:href=" @{'/profile/' + ${section}(page=${pagination.page + 1})}" aria-label="Previous">
-                            <span aria-hidden="true">&gt;</span>
+                            <span aria-hidden="true">下一页</span>
                         </a>
                     </li>
                     <li th:if="${pagination.showEndPage}">
-                        <a th:href=" @{'/profile/' + ${section}(page=${pagination.totalPage)}" aria-label="Previous">
-                            <span aria-hidden="true">&gt;&gt;</span>
+                        <a th:href=" @{'/profile/' + ${section}(page=${pagination.totalPage})}" aria-label="Previous">
+                            <span aria-hidden="true">尾页</span>
                         </a>
                     </li>
                 </ul>
