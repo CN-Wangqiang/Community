@@ -1,7 +1,10 @@
 package life.wangqiang.community.community.service;
 
+import life.wangqiang.community.community.advice.CustomizeExceptionHandler;
 import life.wangqiang.community.community.dto.PaginationDTO;
 import life.wangqiang.community.community.dto.QuestionDTO;
+import life.wangqiang.community.community.exception.CustomizeErrorCode;
+import life.wangqiang.community.community.exception.CustomizeException;
 import life.wangqiang.community.community.mapper.QuestionMapper;
 import life.wangqiang.community.community.mapper.UserMapper;
 import life.wangqiang.community.community.model.Question;
@@ -99,6 +102,9 @@ public class QuestionService {
 
     public QuestionDTO getById(Integer id) {
         Question question = questionMapper.selectByPrimaryKey(id);
+        if (question == null){
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question,questionDTO);
         User user = userMapper.selectByPrimaryKey(question.getCreator());
@@ -122,7 +128,22 @@ public class QuestionService {
             QuestionExample example = new QuestionExample();
             example.createCriteria()
                     .andIdEqualTo(question.getId());
-            questionMapper.updateByExampleSelective(updateQuestion, example);
+            int update = questionMapper.updateByExampleSelective(updateQuestion, example);
+            if (update != 1){
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
         }
+    }
+
+    public void incView(Integer id) {
+        Question question = questionMapper.selectByPrimaryKey(id);
+
+        Question updateQuestion = new Question();
+        updateQuestion.setViewCount(question.getViewCount() + 1);
+
+        QuestionExample questionExample = new QuestionExample();
+        questionExample.createCriteria()
+                .andIdEqualTo(id);
+        questionMapper.updateByExampleSelective(updateQuestion, questionExample);
     }
 }
