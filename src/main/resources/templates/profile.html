@@ -19,32 +19,52 @@
                 <span th:text="${sectionName}">发起</span>
             </h2>
             <hr>
-            <form action="/publish" method="post">
-                <div class="form-group">
-                    <label for="title">问题标题</label>
-                    <input th:value="${title}" type="text" class="form-control" name="title" id="title" placeholder="问题标题...">
+            <div class="media" th:each="question : ${pagination.questions}">
+                <div class="media-left" >
+                    <a href="#">
+                        <img class="media-object img-rounded" th:src="@{${question.user.avatarUrl}}" >
+                    </a>
                 </div>
-                <div class="form-group">
-                    <label for="description">问题描述</label>
-                    <textarea th:text="${description}" class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
+                <div class="media-body">
+                    <h5 class="media-heading" th:text="${question.title}">Media heading</h5>
+                    <span th:text="${question.description}">123</span>
+                    <br>
+                    <span class="text-color-999">
+                        <span th:text="${question.commentCount}"> </span>
+                        个回复
+                        <span th:text="${question.viewCount}"> </span>
+                        次浏览
+                        <span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd')}">2019-12-06</span>
+                    </span>
                 </div>
-                <div class="form-group">
-                    <label for="tag">标签</label>
-                    <input th:value="${tag}" type="text" class="form-control" name="tag" id="tag" placeholder="添加标签，以逗号隔开">
-                </div>
-                <div class="container-fluid main">
-                    <div class="row">
-                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-                            <div class="alert alert-danger alert-alert-danger" th:text="${error}" th:if="${error != null}"></div>
-                        </div>
-                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                            <button type="submit" class="btn btn-success btn-publish">
-                                发布
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li th:if="${pagination.showFirstPage}">
+                        <a th:href="@{'/profile/' + ${section}(page=${1})}"  aria-label="Previous">
+                            <span aria-hidden="true">&lt;&lt;</span>
+                        </a>
+                    </li>
+                    <li th:if="${pagination.showPrevious}">
+                        <a th:href="@{'/profile/' + ${section}(page=${pagination.page - 1})}" aria-label="Previous">
+                            <span aria-hidden="true">&lt;</span>
+                        </a>
+                    </li>
+                    <li th:each="page : ${pagination.pages}" th:class="${pagination.page == page}?'active':''">
+                        <a th:href="@{'/profile/' + ${section}(page=${page})}" th:text="${page}">page</a></li>
+
+                    <li th:if="${pagination.showNext}">
+                        <a th:href=" @{'/profile/' + ${section}(page=${pagination.page + 1})}" aria-label="Previous">
+                            <span aria-hidden="true">&gt;</span>
+                        </a>
+                    </li>
+                    <li th:if="${pagination.showEndPage}">
+                        <a th:href=" @{'/profile/' + ${section}(page=${pagination.totalPage)}" aria-label="Previous">
+                            <span aria-hidden="true">&gt;&gt;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" >
             <div class="list-group section">
