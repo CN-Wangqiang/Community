@@ -5,6 +5,7 @@ import life.wangqiang.community.community.dto.PaginationDTO;
 import life.wangqiang.community.community.dto.QuestionDTO;
 import life.wangqiang.community.community.exception.CustomizeErrorCode;
 import life.wangqiang.community.community.exception.CustomizeException;
+import life.wangqiang.community.community.mapper.QuestionExtMapper;
 import life.wangqiang.community.community.mapper.QuestionMapper;
 import life.wangqiang.community.community.mapper.UserMapper;
 import life.wangqiang.community.community.model.Question;
@@ -33,6 +34,9 @@ public class QuestionService {
 
     @Autowired
     private QuestionMapper questionMapper;
+
+    @Autowired
+    QuestionExtMapper questionExtMapper;
 
     public PaginationDTO list(Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
@@ -136,14 +140,9 @@ public class QuestionService {
     }
 
     public void incView(Integer id) {
-        Question question = questionMapper.selectByPrimaryKey(id);
-
-        Question updateQuestion = new Question();
-        updateQuestion.setViewCount(question.getViewCount() + 1);
-
-        QuestionExample questionExample = new QuestionExample();
-        questionExample.createCriteria()
-                .andIdEqualTo(id);
-        questionMapper.updateByExampleSelective(updateQuestion, questionExample);
+        Question question = new Question();
+        question.setId(id);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }
