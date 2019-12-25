@@ -16,6 +16,9 @@
     width: 42px;
     height: 42px;
 }
+.media-body{
+    padding-top: 15px;
+}
 .text-color-999{
     font-size: 12px;
     font-weight: normal;
@@ -30,4 +33,11 @@
 }
 .jumbotron {
     margin: 50px;
+}
+.comment{
+    margin: 10px 0;
+}
+.comment-btn{
+    float: right;
+    margin-bottom: 10px;
 }
