@@ -23,4 +23,5 @@
     comment_count = comment_count +  #{commentCount,jdbcType=INTEGER}
     where id = #{id}
   </update>
+
 </mapper>
