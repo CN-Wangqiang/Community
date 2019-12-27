@@ -4,10 +4,7 @@ import life.wangqiang.community.community.dto.CommentDTO;
 import life.wangqiang.community.community.enums.CommentTypeEnum;
 import life.wangqiang.community.community.exception.CustomizeErrorCode;
 import life.wangqiang.community.community.exception.CustomizeException;
-import life.wangqiang.community.community.mapper.CommentMapper;
-import life.wangqiang.community.community.mapper.QuestionExtMapper;
-import life.wangqiang.community.community.mapper.QuestionMapper;
-import life.wangqiang.community.community.mapper.UserMapper;
+import life.wangqiang.community.community.mapper.*;
 import life.wangqiang.community.community.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +39,9 @@ public class CommentService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private CommentExtMapper commentExtMapper;
+
     @Transactional
     public void insert(Comment comment) {
         if (comment.getParentId() == null || comment.getParentId() == 0){
@@ -59,6 +59,10 @@ public class CommentService {
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
             commentMapper.insert(comment);
+            Comment parentComment = new Comment();
+            parentComment.setId(comment.getParentId());
+            parentComment.setCommentCount(1);
+            commentExtMapper.incCommentCount(parentComment);
         }else{
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
             if (question == null){
