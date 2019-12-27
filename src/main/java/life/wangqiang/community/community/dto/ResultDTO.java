@@ -12,9 +12,10 @@ import lombok.Data;
  * @Date: 2019/12/25 上午10:25
  */
 @Data
-public class ResultDTO {
+public class ResultDTO<T> {
     private Integer code;
     private String message;
+    private T date;
 
     public static ResultDTO errorOf(Integer code,String  message){
         ResultDTO resultDTO = new ResultDTO();
@@ -31,6 +32,14 @@ public class ResultDTO {
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.setCode(200);
         resultDTO.setMessage("请求成功");
+        return  resultDTO;
+    }
+
+    public static <T> ResultDTO okOf(T t) {
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setCode(200);
+        resultDTO.setMessage("请求成功");
+        resultDTO.setDate(t);
         return  resultDTO;
     }
 

@@ -47,6 +47,16 @@
     border-bottom: 1px solid #eeeeee;
     margin-bottom: 15px;
 }
+.sub-comments{
+    margin-top: 10px;
+    border: 1px solid #eee;
+    padding-top: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.sub-comments .btn{
+    margin: 10px 0;
+}
 
 .comment-btn{
     float: right;
@@ -61,8 +71,12 @@
     font-size: 15px;
     cursor: pointer;
 }
+.menu .active{
+    color: #499ef3;
+}
 .menu .icon:hover{
     color: #499ef3;
-}.question-title{
+}
+.question-title{
     margin-top: 25px;
  }
