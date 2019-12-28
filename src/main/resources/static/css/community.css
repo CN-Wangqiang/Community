@@ -18,6 +18,10 @@
     margin: 5px 5px;
     white-space: normal;
     display: inline-block;
+    cursor: pointer;
+}
+.publish-tag-tab .label-info:hover{
+    color: #777;
 }
 .alert-alert-danger{
     width: 200px;
