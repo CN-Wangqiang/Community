@@ -38,13 +38,30 @@
                 <div class="form-group">
                     <label for="tag">标签</label>
                     <input th:value="${tag}" type="text" class="form-control" name="tag" id="tag"
-                           placeholder="添加标签，以逗号隔开" autocomplete="off">
-                    <div>
-                        <span class="label label-info question-tag"><span class="glyphicon glyphicon-tags" onclick="selectTag('Spring')">Spring</span></span>
-                        <span class="label label-info question-tag"><span class="glyphicon glyphicon-tags" onclick="selectTag('Java')">Java</span>
-                    </span>
-                    </div>
+                           placeholder="添加标签，以逗号隔开" autocomplete="off" onclick="showSelectTag()">
+                    <div id="select-tag" class="publish-tag-tab">
+                        <!--                        标签分类-->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" th:each="selectCategroy,selectcategroyStat: ${tags}"
+                                th:class="${selectcategroyStat.first ? 'active':''}">
+                                <a th:href="${'#' + selectCategroy.categoryName}" aria-controls="home" role="tab"
+                                   th:text="${selectCategroy.categoryName}"
+                                   data-toggle="tab">Home</a></li>
+                        </ul>
+                        <!--                        标签内容-->
+                        <div class="tab-content">
+                            <div role="tabpanel"  th:id="${selectCategroy.categoryName}"
+                                 th:each="selectCategroy,selectcategroyStat: ${tags}"
+                                 th:class="${selectcategroyStat.first ? 'active tab-pane':'tab-pane'}">
+                                <span class="label label-info" th:each="selectTag: ${selectCategroy.tags}">
+                                    <span class="glyphicon glyphicon-tags" th:text="${' ' + selectTag}"
+                                          th:data-tag="${selectTag}"
+                                          onclick="selectTag(this)"></span>
+                                </span>
+                            </div>
+                        </div>
 
+                    </div>
                 </div>
 <!--                发布-->
                 <div class="container-fluid main">
