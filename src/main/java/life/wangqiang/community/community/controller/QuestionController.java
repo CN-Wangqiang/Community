@@ -3,7 +3,6 @@ package life.wangqiang.community.community.controller;
 import life.wangqiang.community.community.dto.CommentDTO;
 import life.wangqiang.community.community.dto.QuestionDTO;
 import life.wangqiang.community.community.enums.CommentTypeEnum;
-import life.wangqiang.community.community.model.Question;
 import life.wangqiang.community.community.service.CommentService;
 import life.wangqiang.community.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;

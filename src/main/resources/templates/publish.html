@@ -45,7 +45,10 @@
                                     height : "400px",
                                     path   : "/js/lib/",
                                     watch : false,
-                                    placeholder : "请输入问题描述..."
+                                    placeholder : "请输入问题描述...",
+                                    imageUpload    : true,
+                                    imageFormats   : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                                    imageUploadURL : "/file/upload",
                                 });
                             });
                         </script>
@@ -98,7 +101,24 @@
             </form>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <h3>问题发起指南</h3>
+            <div class="aw-mod publish-help">
+                <div class="mod-head">
+                    <h3>问题发起指南</h3>
+                </div>
+                <div class="mod-body">
+                    <p><b>• 问题标题:</b> 请用<b style="color:red">精简</b>的语言描述您发布的问题，不超过25字</p>
+                    <p><b>• 问题补充:</b> 详细补充您的问题内容，并确保问题描述清晰直观, 并提供一些相关的资料：							</p><li>服务器运行环境信息；</li>
+                    <li>软件版本；</li>
+                    <li>问题发生的上下文信息；</li>
+                    <li>可以完整复现问题的代码（如可直接运行于 Kibana Console 的复现流程）；</li>
+                    <li>补充完整的异常和错误信息；</li>
+                    <li>注意阅读格式友好，代码和异常信息请用代码标签格式化张贴；</li>
+
+                    <p></p>
+                    <p><b>• 选择标签:</b> 选择一个或者多个合适的标签，不超过<b style="color:red">10</b>个字</p>
+                    <p><b>• 关于积分：</b> 发起一个问题会消耗您 20 个积分, 每多一个回复你将获得 5 个积分的奖励 ,为了您的利益, 在发起问题的时候希望能够更好的描述您的问题以及多使用站内搜索功能.</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
