@@ -97,7 +97,8 @@
                                     <span th:text="${comment.getCommentCount()}"></span>
                                 </span>
                                 <span class="pull-right"
-                                      th:text="${#dates.format(comment.gmtCreate,'yyyy-MM-dd HH:hh')}"></span>
+                                      th:text="${#dates.format(comment.gmtCreate,'yyyy-MM-dd HH:mm')}"></span>
+
                             </div>
                             <!--                            二级评论列表-->
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse sub-comments"

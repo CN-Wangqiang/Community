@@ -119,7 +119,6 @@ public class CommentService {
             return new ArrayList<>();
         }
 
-
         //获取去重的评论人
         Set<Long> commentators = comments.stream().map(comment -> comment.getCommentator()).collect(Collectors.toSet());
         List<Long>  userIds = new ArrayList<>();
