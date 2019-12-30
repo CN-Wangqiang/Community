@@ -6,6 +6,7 @@ import life.wangqiang.community.community.mapper.UserMapper;
 import life.wangqiang.community.community.model.User;
 import life.wangqiang.community.community.provider.GithubProvider;
 import life.wangqiang.community.community.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpRequest;
@@ -27,6 +28,7 @@ import java.util.UUID;
  */
 @Controller
 @Component
+@Slf4j
 public class AuthorizeController {
 
     @Autowired
@@ -51,17 +53,13 @@ public class AuthorizeController {
                             HttpServletResponse reponse){
 
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
-//        System.out.println(clientId);
         accessTokenDTO.setClient_id(clientId);
         accessTokenDTO.setCode(code);
-//        System.out.println(clientSecret);
         accessTokenDTO.setClient_secret(clientSecret);
-//        System.out.println(redirectUri);
         accessTokenDTO.setRedirect_uri(redirectUri);
         accessTokenDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
         GithubUser githubUser = githubProvider.getUser(accessToken);
-//        System.out.println(githubUser.getName());
         if(githubUser != null){
             User user = new User();
             String token = UUID.randomUUID().toString();
@@ -74,6 +72,7 @@ public class AuthorizeController {
             reponse.addCookie(new Cookie("token",token));
             return "redirect:/";
         }else{
+            log.error("callback get github error,{}",githubUser);
             return "redirect:/";
         }
 

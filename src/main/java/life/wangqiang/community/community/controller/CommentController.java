@@ -8,6 +8,7 @@ import life.wangqiang.community.community.exception.CustomizeErrorCode;
 import life.wangqiang.community.community.model.Comment;
 import life.wangqiang.community.community.model.User;
 import life.wangqiang.community.community.service.CommentService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import java.util.List;
  * @Date: 2019/12/25 上午10:00
  */
 @Controller
+@Slf4j
 public class CommentController {
 
 
@@ -37,9 +39,11 @@ public class CommentController {
 
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
+            log.error("get user error,{}",user);
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
         if (commentCreateDTO == null || StringUtils.isBlank(commentCreateDTO.getContent())) {
+            log.error("get comment error,{}",commentCreateDTO);
             return ResultDTO.errorOf(CustomizeErrorCode.CONTENT_IS_EMPTY);
         }
 
