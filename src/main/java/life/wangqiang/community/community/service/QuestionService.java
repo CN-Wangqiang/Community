@@ -3,6 +3,7 @@ package life.wangqiang.community.community.service;
 import life.wangqiang.community.community.dto.PaginationDTO;
 import life.wangqiang.community.community.dto.QuestionDTO;
 import life.wangqiang.community.community.dto.QuestionQueryDTO;
+import life.wangqiang.community.community.enums.SortEnum;
 import life.wangqiang.community.community.exception.CustomizeErrorCode;
 import life.wangqiang.community.community.exception.CustomizeException;
 import life.wangqiang.community.community.mapper.QuestionExtMapper;
@@ -40,7 +41,7 @@ public class QuestionService {
     @Autowired
     QuestionExtMapper questionExtMapper;
 
-    public PaginationDTO list(String search,Integer page, Integer size) {
+    public PaginationDTO list(String search, String tag, String sort, Integer page, Integer size) {
 
         String searchString = null;
         if (StringUtils.isNotBlank(search)){
@@ -48,12 +49,30 @@ public class QuestionService {
         }
 
         PaginationDTO paginationDTO = new PaginationDTO();
-
-
         QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
         questionQueryDTO.setSearch(searchString);
-        Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
+
+        if (StringUtils.isNotBlank(tag)){
+            tag = tag.replace("+","").replace("*","").replace("?","");
+            questionQueryDTO.setTag(tag);
+        }
+
+        for (SortEnum sortEnum : SortEnum.values()) {
+            questionQueryDTO.setSort(sort);
+
+            if (sortEnum == SortEnum.HOT7){
+                questionQueryDTO.setTime(System.currentTimeMillis() - 1000L * 60 * 60 * 24 * 7);
+            }
+            if (sortEnum == SortEnum.HOT30){
+                questionQueryDTO.setTime(System.currentTimeMillis() - 1000L * 60 * 60 * 24 * 30);
+
+            }
+            break;
+        }
+
+
         Integer totalPage;
+        Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
         if(totalCount % size == 0){
             totalPage = totalCount / size;
         }else {

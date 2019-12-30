@@ -5,6 +5,38 @@
     margin: 30px;
     background-color: white;
 }
+.index-favorite{
+    padding: 0px;
+}
+.index-favorite .favorite{
+    width: 100%;
+}
+.common-link{
+    font-size: 13px;
+    clear: both;
+}
+.common-book{
+    width: 20px;
+}
+.Webmaster{
+    width: 15px;
+}
+.community-tag{
+    text-decoration-line: none;
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    line-height: 16px;
+    padding: 2px 5px;
+    background-color: #99cfff;
+    font-size: 12px;
+    color: #fff !important;
+    border-radius: 4px;
+    margin: 4px;
+}
+.tag-text{
+    padding-left: 5px;
+}
 .btn-publish{
     float: right;
     margin-bottom: 20px;

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/community.css">
     <link rel="stylesheet" href="/css/editormd.css">
+    <link rel="icon" href="/images/icon/publish.ico" >
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/community.js"></script>
@@ -75,9 +76,12 @@
                                  th:each="selectCategroy,selectcategroyStat: ${tags}"
                                  th:class="${selectcategroyStat.first ? 'active tab-pane':'tab-pane'}">
                                 <span class="label label-info" th:each="selectTag: ${selectCategroy.tags}">
-                                    <span class="glyphicon glyphicon-tags" th:text="${' ' + selectTag}"
+                                    <span class="glyphicon glyphicon-tags"></span>
+                                    <span class="tag-text" style="font-weight: normal"
+                                          th:text="${selectTag}"
                                           th:data-tag="${selectTag}"
-                                          onclick="selectTag(this)"></span>
+                                          onclick="selectTag(this)">
+                                        </span>
                                 </span>
                             </div>
                         </div>

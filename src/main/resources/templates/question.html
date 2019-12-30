@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/community.css">
     <link rel="stylesheet" href="/css/editormd.preview.css">
+    <link rel="icon" href="/images/icon/MyQuestion.ico" >
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/moment.js"></script>
@@ -57,8 +58,8 @@
                 <!--                标签-->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <span class="label label-info question-tag"  th:each="  tag : ${question.tag.split(',')}">
-                        <span class="glyphicon glyphicon-tags"></span>
-                        <span class="label label-info " th:text="${tag}">Info</span>
+                        <span class="glyphicon glyphicon-tags"><span class="tag-text" th:text="${tag}"></span></span>
+
                     </span>
                 </div>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
