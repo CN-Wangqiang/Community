@@ -67,13 +67,13 @@
     <if test="sort == null or sort == ''">
       order by gmt_create desc
     </if>
-    <if test="sort == null and sort == '' and sort == 'new'">
+    <if test="sort != null and sort != '' and sort == 'new'">
       order by gmt_create desc
     </if>
-    <if test="sort == null and sort == '' and sort == 'no'">
+    <if test="sort != null and sort != '' and sort == 'no'">
       order by gmt_create desc
     </if>
-    <if test="sort == null and sort == '' and (sort == 'hot' || sort == 'hot7' || sort == 'hot30')">
+    <if test="sort != null and sort != '' and (sort == 'hot' || sort == 'hot7' || sort == 'hot30')">
       order by comment_count desc
     </if>
     limit #{page},#{size}
