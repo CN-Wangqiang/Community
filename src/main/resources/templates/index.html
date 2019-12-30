@@ -30,7 +30,7 @@
                     <h4 class="media-heading" >
                     <a th:href="@{'question/' + ${question.id}}" th:text="${question.title}"></a>
                     </h4>
-                    <span th:text="${question.description}">123</span>
+<!--                    <span th:text="${question.description}">123</span>-->
 
                     <span class="text-color-999">
                         <span th:text="${question.commentCount}"> </span>
@@ -45,25 +45,25 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <li th:if="${pagination.showFirstPage}">
-                        <a href="/?page=1" aria-label="Previous">
+                        <a th:href="@{/(page=1,search=${search})}"aria-label="Previous">
                             <span aria-hidden="true">首页</span>
                         </a>
                     </li>
                     <li th:if="${pagination.showPrevious}">
-                        <a th:href="@{/(page=${pagination.page - 1})}" aria-label="Previous">
+                        <a th:href="@{/(page=${pagination.page - 1},search=${search})}" aria-label="Previous">
                             <span aria-hidden="true">上一页</span>
                         </a>
                     </li>
                     <li th:each="page : ${pagination.pages}" th:class="${pagination.page == page}?'active':''">
-                        <a th:href="@{/(page=${page})}" th:text="${page}">page</a></li>
+                        <a th:href="@{/(page=${page},search=${search})}" th:text="${page}">page</a></li>
 
                     <li th:if="${pagination.showNext}">
-                        <a th:href="@{/(page=${pagination.page + 1})}" aria-label="Previous">
+                        <a th:href="@{/(page=${pagination.page + 1},search=${search})}" aria-label="Previous">
                             <span aria-hidden="true">下一页</span>
                         </a>
                     </li>
                     <li th:if="${pagination.showEndPage}">
-                        <a th:href="@{/(page=${pagination.totalPage})}" aria-label="Previous">
+                        <a th:href="@{/(page=${pagination.totalPage},search=${search})}" aria-label="Previous">
                             <span aria-hidden="true">尾页</span>
                         </a>
                     </li>
@@ -77,5 +77,6 @@
         </div>
     </div>
 </div>
+<div th:insert="~{footer :: foot}"></div>
 </body>
 </html>

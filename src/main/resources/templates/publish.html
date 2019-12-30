@@ -58,7 +58,7 @@
 <!--                添加标签-->
                 <div class="form-group">
                     <label for="tag">标签</label>
-                    <input th:value="${errorTag != null ? errorTag :tag}" placeholder="添加标签，以逗号隔开" type="text" class="form-control" name="tag" id="tag"
+                    <input th:value="${errorTag == null ? tag :''}" th:placeholder="${errorTag != null ? errorTag : '添加标签，以逗号隔开'}"  type="text" class="form-control" name="tag" id="tag"
                             autocomplete="off" onclick="showSelectTag()">
                     <div id="select-tag" class="publish-tag-tab">
                         <!--                        标签分类-->
@@ -116,5 +116,6 @@
         </div>
     </div>
 </div>
+<div th:insert="~{footer :: foot}"></div>
 </body>
 </html>
