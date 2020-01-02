@@ -1,5 +1,7 @@
 package life.wangqiang.community.community.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import life.wangqiang.community.community.cache.HotTagCache;
 import life.wangqiang.community.community.dto.PaginationDTO;
 import life.wangqiang.community.community.dto.QuestionDTO;
@@ -26,6 +28,7 @@ import java.util.List;
  * @Date: 2019/12/17 上午9:44
  */
 @Controller
+@Api(tags = "首页")
 public class IndexController {
 
 
@@ -37,6 +40,7 @@ public class IndexController {
     private HotTagCache hotTagCache;
 
     @GetMapping("/")
+    @ApiOperation("请求首页")
     public String index(Model model,
                         @RequestParam(name="page",defaultValue = "1") Integer page,
                         @RequestParam(name = "size",defaultValue = "5")Integer size,

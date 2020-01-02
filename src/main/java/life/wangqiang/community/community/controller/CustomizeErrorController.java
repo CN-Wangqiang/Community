@@ -1,5 +1,6 @@
 package life.wangqiang.community.community.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @RequestMapping("${server.error.path:${error.path:/error}}")
+@Api(tags = "错误处理")
 public class CustomizeErrorController implements ErrorController {
 
     @Override

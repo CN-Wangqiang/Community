@@ -1,5 +1,7 @@
 package life.wangqiang.community.community.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import life.wangqiang.community.community.cache.TagCache;
 import life.wangqiang.community.community.dto.QuestionDTO;
 import life.wangqiang.community.community.mapper.QuestionMapper;
@@ -27,12 +29,14 @@ import javax.servlet.http.HttpServletRequest;
  * @Date: 2019/12/17 下午6:18
  */
 @Controller
+@Api(tags = "问题发布")
 public class PublishController {
 
 
     @Autowired
     QuestionService questionService;
 
+    @ApiOperation("编辑问题")
     @GetMapping("/publish/{id}")
     public String edit(@PathVariable(name = "id")Long id,
                        Model model){
@@ -51,6 +55,7 @@ public class PublishController {
         return "publish";
     }
 
+    @ApiOperation("发布问题")
     @PostMapping("/publish")
     public String toPublish(
             @RequestParam("title") String title,

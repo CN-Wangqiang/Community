@@ -1,5 +1,7 @@
 package life.wangqiang.community.community.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import life.wangqiang.community.community.dto.FileDTO;
 import life.wangqiang.community.community.provider.QiniuCloudProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import java.io.IOException;
  * @Date: 2019/12/29 上午10:37
  */
 @Controller
+@Api(tags = "文件上传")
 public class FileController {
 
 
@@ -28,6 +31,8 @@ public class FileController {
 
     @RequestMapping("/file/upload")
     @ResponseBody
+    @ApiOperation("文件上传")
+
     public FileDTO upload(HttpServletRequest request){
         MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
         MultipartFile file = multipartHttpServletRequest.getFile("editormd-image-file");

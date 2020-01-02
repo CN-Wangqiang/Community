@@ -1,5 +1,8 @@
 package life.wangqiang.community.community.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import life.wangqiang.community.community.dto.AccessTokenDTO;
 import life.wangqiang.community.community.dto.GithubUser;
 import life.wangqiang.community.community.mapper.UserMapper;
@@ -29,6 +32,7 @@ import java.util.UUID;
 @Controller
 @Component
 @Slf4j
+@Api(tags = "授权登陆退出")
 public class AuthorizeController {
 
     @Autowired
@@ -48,6 +52,7 @@ public class AuthorizeController {
     UserService userService;
 
     @GetMapping("/callback")
+    @ApiOperation("授权登陆")
     public String callback(@RequestParam(name="code")String code,
                            @RequestParam(name="state")String state,
                             HttpServletResponse reponse){
@@ -79,6 +84,8 @@ public class AuthorizeController {
     }
 
     @GetMapping("/logout")
+    @ApiOperation("退出登陆")
+
     public String logout(HttpServletRequest request,
                          HttpServletResponse response){
         request.getSession().removeAttribute("user");

@@ -1,5 +1,7 @@
 package life.wangqiang.community.community.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import life.wangqiang.community.community.dto.CommentCreateDTO;
 import life.wangqiang.community.community.dto.CommentDTO;
 import life.wangqiang.community.community.dto.ResultDTO;
@@ -26,6 +28,7 @@ import java.util.List;
  */
 @Controller
 @Slf4j
+@Api(tags = "评论列表")
 public class CommentController {
 
 
@@ -33,6 +36,7 @@ public class CommentController {
     private CommentService commentService;
 
     @ResponseBody
+    @ApiOperation("发布评论")
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
     public Object post(@RequestBody CommentCreateDTO commentCreateDTO,
                        HttpServletRequest request) {
@@ -61,6 +65,7 @@ public class CommentController {
     }
 
     @ResponseBody
+    @ApiOperation("获取评论")
     @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
     public ResultDTO<List> comments(@PathVariable(name ="id")Long id) {
         List<CommentDTO> commentDTOS = commentService.ListByTargetId(id, CommentTypeEnum.COMMENT);

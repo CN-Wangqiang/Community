@@ -1,5 +1,7 @@
 package life.wangqiang.community.community.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import life.wangqiang.community.community.dto.PaginationDTO;
 import life.wangqiang.community.community.mapper.UserMapper;
 import life.wangqiang.community.community.model.User;
@@ -23,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Date: 2019/12/18 下午6:12
  */
 @Controller
+@Api(tags = "个人详情")
 public class ProfileController {
 
 
@@ -33,6 +36,7 @@ public class ProfileController {
     @Autowired
     private NotificationService notificationService;
 
+    @ApiOperation("个人详情")
     @GetMapping("/profile/{action}")
     public String profile(@PathVariable(name ="action")String action,
                           HttpServletRequest request,

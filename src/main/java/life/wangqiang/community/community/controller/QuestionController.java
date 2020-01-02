@@ -1,5 +1,7 @@
 package life.wangqiang.community.community.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import life.wangqiang.community.community.dto.CommentDTO;
 import life.wangqiang.community.community.dto.QuestionDTO;
 import life.wangqiang.community.community.enums.CommentTypeEnum;
@@ -21,6 +23,7 @@ import java.util.List;
  * @Date: 2019/12/22 下午11:16
  */
 @Controller
+@Api(tags = "问题列表")
 public class QuestionController {
 
     @Autowired
@@ -29,6 +32,7 @@ public class QuestionController {
     @Autowired
     CommentService commentService;
 
+    @ApiOperation("获取问题列表")
     @GetMapping("/question/{id}")
     public String question(@PathVariable(name = "id")Long id,
                            Model model){

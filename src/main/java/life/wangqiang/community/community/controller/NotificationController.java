@@ -1,5 +1,7 @@
 package life.wangqiang.community.community.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import life.wangqiang.community.community.dto.NotificationDTO;
 import life.wangqiang.community.community.dto.PaginationDTO;
 import life.wangqiang.community.community.enums.NotificationStatusEnum;
@@ -23,11 +25,13 @@ import javax.servlet.http.HttpServletRequest;
  * @Date: 2019/12/28 下午6:09
  */
 @Controller
+@Api(tags = "个人通知")
 public class NotificationController {
 
     @Autowired
     private  NotificationService notificationService;
 
+    @ApiOperation("请求通知列表")
     @GetMapping("/notification/{id}")
     public String profile(HttpServletRequest request,
                           @PathVariable(name = "id")Long id) {
